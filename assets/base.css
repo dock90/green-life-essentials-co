@@ -2108,6 +2108,8 @@ input[type='checkbox'] {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas: 'announcements';
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
 }
 
 .utility-bar__grid .list-social {
