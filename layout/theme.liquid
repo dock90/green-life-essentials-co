@@ -373,21 +373,68 @@
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
+    {% comment %} Capture and store UTM parameters {% endcomment %}
     <script>
-    // Capture and store UTM parameters
-    (function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const utmData = {
-        utm_source: urlParams.get('utm_source'),
-        utm_medium: urlParams.get('utm_medium'),
-        utm_campaign: urlParams.get('utm_campaign')
-      };
+      (function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const utmData = {
+          utm_source: urlParams.get('utm_source'),
+          utm_medium: urlParams.get('utm_medium'),
+          utm_campaign: urlParams.get('utm_campaign'),
+        };
 
-      // Store in localStorage to persist across pages
-      if (utmData.utm_source || utmData.utm_medium || utmData.utm_campaign) {
-        localStorage.setItem('utmData', JSON.stringify(utmData));
-      }
-    })();
+        // Store in localStorage to persist across pages
+        if (utmData.utm_source || utmData.utm_medium || utmData.utm_campaign) {
+          localStorage.setItem('utmData', JSON.stringify(utmData));
+        }
+      })();
+    </script>
+    {% comment %} Add utm params to cart {% endcomment %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const utmData = JSON.parse(localStorage.getItem('utmData') || '{}');
+
+        if (Object.keys(utmData).length > 0) {
+          console.log('Found UTM data:', utmData); // For debugging
+
+          // Function to add UTM data to cart
+          function addUTMToCart() {
+            fetch('/cart/update.js', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                attributes: {
+                  'UTM Source': utmData.utm_source || '',
+                  'UTM Medium': utmData.utm_medium || '',
+                  'UTM Campaign': utmData.utm_campaign || '',
+                  'UTM Term': utmData.utm_term || '',
+                  'UTM Content': utmData.utm_content || '',
+                },
+              }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log('UTM data added to cart:', data);
+              })
+              .catch((error) => {
+                console.error('Error adding UTM to cart:', error);
+              });
+          }
+
+          // Add UTM data immediately when page loads
+          addUTMToCart();
+
+          // Also add UTM data whenever someone adds to cart
+          document.addEventListener('click', function (e) {
+            // Check for add to cart buttons
+            if (e.target.matches('[name="add"], .btn--add-to-cart, .product-form__cart-submit, [data-add-to-cart]')) {
+              setTimeout(addUTMToCart, 1000); // Small delay to ensure cart is updated first
+            }
+          });
+        }
+      });
     </script>
   </body>
 </html>
