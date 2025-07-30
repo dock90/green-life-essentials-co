@@ -296,6 +296,16 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+    <!-- Google Ads Base Tracking -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-55555555"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'AW-55555555');
+    </script>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
@@ -436,5 +446,26 @@
         }
       });
     </script>
+
+    <!-- Google Ads Conversion Tracking -->
+    {% if order and template contains 'order' %}
+      <script>
+        // Prevent duplicate firing
+        if (!window.conversionTracked) {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-55555555/ljknLJKLAMS-O',
+            'value': {{ order.total_price | divided_by: 100.0 }},
+            'currency': '{{ order.currency }}',
+            'transaction_id': '{{ order.order_number }}',
+            'custom_parameters': {
+              'order_id': '{{ order.id }}',
+              'customer_email': '{{ order.email }}'
+            }
+          });
+          window.conversionTracked = true;
+          console.log('Google Ads conversion tracked for order:', '{{ order.order_number }}');
+        }
+      </script>
+    {% endif %}
   </body>
 </html>
