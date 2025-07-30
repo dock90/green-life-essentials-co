@@ -22,7 +22,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text": "",
             "text_style": "body"
           }
         },
@@ -69,7 +69,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>We</p>"
+            "text": "<p>Out supergreens are both flavourful and easy to consume. Just add water and mix! No clumps, no grit. Pure taste.</p>"
           }
         }
       },
@@ -91,7 +91,7 @@
       "settings": {
         "collection": "all",
         "products_to_show": 8,
-        "title": "Featured products",
+        "title": "Top Picks",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
