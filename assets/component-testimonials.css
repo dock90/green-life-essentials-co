@@ -1,5 +1,5 @@
 .testimonials {
-	background: linear-gradient(135deg, #0f2e1f 0%, #1a4a2e 50%, #0f2e1f 100%);
+	background: linear-gradient(135deg, #0a1f15 0%, #0f2e1f 50%, #0a1f15 100%);
 	color: #ffffff;
 	text-align: center;
 	position: relative;
@@ -56,13 +56,13 @@
 
 .testimonial-card {
 	position: relative;
-	background: rgba(255, 255, 255, 0.08);
+	background: rgba(255, 255, 255, 0.05);
 	border-radius: 16px;
 	padding: 2.5rem 2rem;
 	backdrop-filter: blur(15px);
 	border: none;
 	transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	box-shadow: none;
 }
 
 .testimonial-card::before {
@@ -86,18 +86,18 @@
 .testimonial-card:hover {
 	transform: translateY(-8px);
 	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-	background: rgba(255, 255, 255, 0.12);
+	background: rgba(255, 255, 255, 0.08);
 }
 
 .testimonial-card__content {
-	margin-bottom: 1.5rem;
+	margin-bottom: 1rem;
 }
 
 .testimonial-card__text {
-	font-size: 1.125rem;
+	font-size: 1.25rem;
 	line-height: 1.7;
 	color: #ffffff;
-	font-style: italic;
+	font-style: normal;
 	margin: 0;
 	font-weight: 400;
 	opacity: 0.95;
@@ -132,13 +132,6 @@
 	color: #ffffff;
 	font-size: 1rem;
 	opacity: 0.95;
-}
-
-.testimonial-card__date {
-	font-size: 0.875rem;
-	color: #b8d4c8;
-	opacity: 0.8;
-	font-weight: 400;
 }
 
 .testimonial-card__verified {
@@ -230,7 +223,7 @@
 	}
 
 	.testimonial-card__text {
-		font-size: 1rem;
+		font-size: 1.125rem;
 	}
 
 	.testimonials__link .button {
