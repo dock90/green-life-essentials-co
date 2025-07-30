@@ -465,9 +465,6 @@
 						"author": {
 							"label": "Author name and location"
 						},
-						"date": {
-							"label": "Date"
-						},
 						"verified": {
 							"label": "Show verified badge"
 						}

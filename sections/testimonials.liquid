@@ -43,7 +43,6 @@
 
           <div class="testimonial-card__meta">
             <span class="testimonial-card__author">{{ block.settings.author | default: 'Verified Customer' }}</span>
-            <span class="testimonial-card__date">{{ block.settings.date | default: 'Verified review' }}</span>
           </div>
 
           {% if block.settings.verified %}
@@ -52,6 +51,7 @@
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10 3L4.5 8.5L2 6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
+                Verified review
               </span>
             </div>
           {% endif %}
@@ -139,11 +139,6 @@
           "id": "author",
           "label": "t:sections.testimonials.blocks.testimonial.settings.author.label",
           "default": "Amic J. Boston MA, May 2022"
-        },
-        {
-          "type": "text",
-          "id": "date",
-          "label": "t:sections.testimonials.blocks.testimonial.settings.date.label"
         },
         {
           "type": "checkbox",
