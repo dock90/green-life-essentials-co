@@ -1,0 +1,175 @@
+{{ 'component-testimonials.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="testimonials section-{{ section.id }}-padding">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <h2 class="testimonials__title">{{ section.settings.title }}</h2>
+    {% endif %}
+
+    {% if section.settings.subtitle != blank %}
+      <p class="testimonials__subtitle">{{ section.settings.subtitle }}</p>
+    {% endif %}
+
+    <div class="testimonials__grid">
+      {% for block in section.blocks %}
+        <div class="testimonial-card" {{ block.shopify_attributes }}>
+          {% if block.settings.testimonial != blank %}
+            <div class="testimonial-card__content">
+              <p class="testimonial-card__text">{{ block.settings.testimonial }}</p>
+            </div>
+          {% endif %}
+
+          <div class="testimonial-card__rating">
+            <div class="stars">
+              {% for i in (1..5) %}
+                <span class="star">★</span>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="testimonial-card__meta">
+            <span class="testimonial-card__author">{{ block.settings.author | default: 'Verified Customer' }}</span>
+            <span class="testimonial-card__date">{{ block.settings.date | default: 'Verified review' }}</span>
+          </div>
+
+          {% if block.settings.verified %}
+            <div class="testimonial-card__verified">
+              <span class="verified-badge">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 3L4.5 8.5L2 6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Verified review
+              </span>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.link != blank and section.settings.link_text != blank %}
+      <div class="testimonials__link">
+        <a href="{{ section.settings.link }}" class="button button--primary">
+          {{ section.settings.link_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.testimonials.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.testimonials.settings.title.label",
+      "default": "You don't have to like veggies to like Supergreens"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "t:sections.testimonials.settings.subtitle.label",
+      "default": "Verified customers share their thoughts on how Supergreens tastes."
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "t:sections.testimonials.settings.link.label"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "t:sections.testimonials.settings.link_text.label",
+      "default": "Read More Reviews"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "t:sections.testimonials.blocks.testimonial.name",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "testimonial",
+          "label": "t:sections.testimonials.blocks.testimonial.settings.testimonial.label",
+          "default": "Slightly sweet, very fine powder that dissolves quickly without any bitter after taste."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "t:sections.testimonials.blocks.testimonial.settings.author.label",
+          "default": "Amic J. Boston MA, May 2022"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "t:sections.testimonials.blocks.testimonial.settings.date.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "t:sections.testimonials.blocks.testimonial.settings.verified.label",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.testimonials.presets.name",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -364,8 +364,48 @@
       "items_removed": {
         "one": "{{ quantity }} item removed",
         "other": "{{ quantity }} items removed"
+      }
+    },
+    "testimonials": {
+      "name": "Testimonials",
+      "settings": {
+        "title": {
+          "label": "Title"
+        },
+        "subtitle": {
+          "label": "Subtitle"
+        },
+        "link": {
+          "label": "Link URL"
+        },
+        "link_text": {
+          "label": "Link text"
+        }
       },
-      "product_variants": "Product variants",
+      "blocks": {
+        "testimonial": {
+          "name": "Testimonial",
+          "settings": {
+            "testimonial": {
+              "label": "Testimonial text"
+            },
+            "author": {
+              "label": "Author name and location"
+            },
+            "date": {
+              "label": "Date"
+            },
+            "verified": {
+              "label": "Show verified badge"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Testimonials"
+      }
+    },
+    "product_variants": "Product variants",
       "total_items": "Total items",
       "remove_all_single_item_confirmation": "Remove 1 item from your cart?",
       "remove_all_items_confirmation": "Remove all {{ quantity }} items from your cart?",
