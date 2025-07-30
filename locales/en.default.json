@@ -405,15 +405,15 @@
         "name": "Testimonials"
       }
     },
-    "product_variants": "Product variants",
-      "total_items": "Total items",
-      "remove_all_single_item_confirmation": "Remove 1 item from your cart?",
-      "remove_all_items_confirmation": "Remove all {{ quantity }} items from your cart?",
-      "remove_all": "Remove all",
-      "cancel": "Cancel",
-      "min_error": "This item has a minimum of {{ min }}",
-      "max_error": "This item has a maximum of {{ max }}",
-      "step_error": "You can only add this item in increments of {{ step }}"
+    "all": {
+      "padding": {
+        "section_padding_heading": "Section padding",
+        "padding_top": "Padding top",
+        "padding_bottom": "Padding bottom"
+      },
+      "colors": {
+        "label": "Colors"
+      }
     }
   },
   "localization": {
