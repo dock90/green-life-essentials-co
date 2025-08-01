@@ -448,7 +448,7 @@
     </script>
 
     <!-- Google Ads Conversion Tracking -->
-    {% if order and template contains 'order' %}
+    {% if template.name == 'customers/order' and order and order.id %}
       <script>
         // Prevent duplicate firing
         if (!window.conversionTracked) {
